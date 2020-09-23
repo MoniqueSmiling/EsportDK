@@ -6,4 +6,128 @@
              xmlns:local="clr-namespace:EsportDK.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <!-- #region Styles-->
+        <!-- Stackpanel Style -->
+        <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="10 12"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <!-- TextBlock Style -->
+        <Style TargetType="TextBlock">
+            <Setter Property="Width" Value="110"/>
+        </Style>
+        <!-- TextBox Style -->
+        <Style TargetType="TextBox">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Padding" Value="2"/>
+        </Style>
+        <!-- ComboBox Style -->
+        <Style TargetType="ComboBox">
+            <Setter Property="Width" Value="120" />
+        </Style>
+        <!-- Button Style -->
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="10 0"/>
+        </Style>
+        <!--#endregion-->
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="300"/>
+            <ColumnDefinition Width="2*" MinWidth="500"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- #region Registrer spiller -->
+        <StackPanel HorizontalAlignment="Stretch" Grid.Column="0">
+            <!-- Registrer titel -->
+            <TextBlock Text="Registrer spiller " HorizontalAlignment="Center" FontSize="20"/>
+            <!-- Spiller fornavn-->
+            <StackPanel Orientation="Horizontal" >
+                <!-- Spiller Fornavn-->
+                <TextBlock Text="Fornavn"/>
+                <!-- Spiller Fornavn-->
+                <TextBox Text="Fornavn"/>
+            </StackPanel>
+            <!-- Spiller efternavn -->
+            <StackPanel Orientation="Horizontal">
+                <!-- Spiller Fornavn-->
+                <TextBlock Text="Efternavn"/>
+                <!-- Spiller Fornavn-->
+                <TextBox Text="Efternavn"/>
+            </StackPanel>
+            <!-- Spiller Summoner Name-->
+            <StackPanel Orientation="Horizontal">
+                <!-- Spiller Fornavn-->
+                <TextBlock Text="Summoner Navn"/>
+                <!-- Spiller Fornavn-->
+                <TextBox Text="Summoner Navn"/>
+            </StackPanel>
+            <!-- Spiller Summoner Rang-->
+            <StackPanel Orientation="Horizontal">
+                <!-- Spiller Rang-->
+                <TextBlock Text="Rang"/>
+                <!-- ComboBox Spiller Rang-->
+                <ComboBox x:Name="spillerRangComboBox">
+                    <ComboBoxItem Content="1v1"/>
+                    <ComboBoxItem Content="3v3"/>
+                    <ComboBoxItem Content="5v5"/>
+                </ComboBox>
+            </StackPanel>
+            <!-- Spiller TelefonNummber -->
+            <StackPanel Orientation="Horizontal">
+                <!-- Spiller Fornavn-->
+                <TextBlock Text="Telefon:"/>
+                <!-- Spiller Fornavn-->
+                <TextBox Text=""/>
+            </StackPanel>
+            <!-- Spiller Turneringstype-->
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Turneringtype"/>
+                <!-- Combobox Spiller Turneringstype -->
+                <ComboBox x:Name="spillerTurneringstypeComboBox">
+                    <ComboBoxItem Content="1v1"/>
+                    <ComboBoxItem Content="3v3"/>
+                    <ComboBoxItem Content="5v5"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <!-- Button der fjerner user input-->
+                <Button x:Name="cancelspillerButton" Content="Cancel" />
+                <!-- Button gemmer spiller info -->
+                <Button x:Name="updateSpillerButton" Content="Registrer" />
+            </StackPanel>
+        </StackPanel>
+        <!--#endregion-->
+
+        <!-- #region Datagrid Spillere-->
+        <DataGrid x:Name="spillerDataGrid" x:FieldModifier="public" AutoGenerateColumns="False" ColumnWidth="*" Grid.Column="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Fornavn" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Efternavn" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Telefon" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Summoner navn" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Rang" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Turneringstype" Binding="{Binding ID}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Action" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="redigerSpillerButton"  />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <!-- #endregion -->
+    </Grid>
 </UserControl>
