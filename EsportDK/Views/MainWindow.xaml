@@ -1,0 +1,74 @@
+﻿<Window x:Class="EsportDK.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EsportDK"
+        xmlns:viewmodels="clr-namespace:EsportDK.ViewModels"
+        xmlns:views="clr-namespace:EsportDK.Views"
+        mc:Ignorable="d"
+        Title="Esport Danmark - League of Legends turnering" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <!-- #region DataTemplates User Control -->
+
+        <!-- Spillere DataTemplate -->
+        <DataTemplate x:Name="spillereViewTemplate" DataType="{x:Type viewmodels:SpillereViewModel}">
+            <views:SpillereView DataContext="{Binding}" />
+        </DataTemplate>
+
+        <!-- Turneringer DataTemplate -->
+        <DataTemplate x:Name="turneringerViewTemplate" DataType="{x:Type viewmodels:TurneringerViewModel}">
+            <views:TurneringerView DataContext="{Binding}" />
+        </DataTemplate>
+
+        <!-- Ansatte DataTemplate -->
+        <DataTemplate x:Name="ansatteViewTemplate" DataType="{x:Type viewmodels:AnsatteViewModel}">
+            <views:AnsatteView DataContext="{Binding}" />
+        </DataTemplate>
+
+        <!-- Sponsorer DataTemplate -->
+        <DataTemplate x:Name="sponsorerViewTemplate" DataType="{x:Type viewmodels:SponsorerViewModel}">
+            <views:SponsorerView DataContext="{Binding}" />
+        </DataTemplate>
+        <!--#endregion-->
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="180"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- #region Dockpanel Menu-->
+        <DockPanel>
+            <!-- Menu-->
+            <Menu DockPanel.Dock="Right">
+                <StackPanel Orientation="Vertical">
+                    <MenuItem Header="_x" />
+                    <Image Source="/Assets/EsportDK/Logo.png" Width="172" Height="33"/>
+                    <MenuItem Header="_Spillere" Click="spillereMenuItem_Click"/>
+                    <MenuItem Header="_Turneringer" Click="turneringerMenuItem_Click" />
+                    <MenuItem Header="_Ansatte" Click="ansatteMenuItem_Click"/>
+                    <MenuItem Header="_Sponsorer" Click="sponsorerMenuItem_Click"/>
+                </StackPanel>
+            </Menu>
+        </DockPanel>
+        <!--#endregion-->
+
+        <!-- #region Grid of Views -->
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <ContentControl Grid.Column="0" Grid.Row="0" Content="{Binding}" />
+        </Grid>
+        <!--#endregion-->
+
+    </Grid>
+</Window>
