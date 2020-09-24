@@ -4,9 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6af4aa4e9cce4e4aa2ed88c5ec25541d" Name="Diagram1">
-        <EntityTypeShape EntityType="EsportDKDBModel.Spillere" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EsportDKDBModel.Turneringer" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="99aadf20476545e9ab4c1a896c2872ce" Name="Diagram1">
+        <EntityTypeShape EntityType="EsportDKDBModel.Ansatte" Width="1.5" PointX="7" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EsportDKDBModel.Spillere" Width="1.5" PointX="4.625" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EsportDKDBModel.Sponsorer" Width="1.5" PointX="7" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EsportDKDBModel.Turneringer" Width="1.5" PointX="4.625" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="EsportDKDBModel.FK_Ansatte" ManuallyRouted="false" />
+        <AssociationConnector Association="EsportDKDBModel.FK_Spillere_Sponsor" ManuallyRouted="false" />
+        <AssociationConnector Association="EsportDKDBModel.FK_Spillere_Turnering" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

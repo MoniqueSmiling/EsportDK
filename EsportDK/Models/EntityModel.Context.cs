@@ -25,7 +25,9 @@ namespace EsportDK.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Ansatte> Ansattes { get; set; }
         public virtual DbSet<Spillere> Spilleres { get; set; }
+        public virtual DbSet<Sponsorer> Sponsorers { get; set; }
         public virtual DbSet<Turneringer> Turneringers { get; set; }
     }
 }

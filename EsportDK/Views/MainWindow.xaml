@@ -7,9 +7,10 @@
         xmlns:viewmodels="clr-namespace:EsportDK.ViewModels"
         xmlns:views="clr-namespace:EsportDK.Views"
         mc:Ignorable="d"
-        Title="Esport Danmark - League of Legends turnering" MinHeight="600" MinWidth="1200" WindowStartupLocation="CenterScreen">
+        Title="Esport Danmark - League of Legends turnering" MinHeight="600" MinWidth="1000" MaxHeight="700" MaxWidth="1400" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
+
         <!-- #region DataTemplates User Control -->
 
         <!-- Spillere DataTemplate -->
@@ -37,14 +38,14 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MinWidth="180"/>
+            <ColumnDefinition Width="*" MinWidth="185" MaxWidth="185"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
 
         <!-- #region Dockpanel Menu-->
-        <DockPanel Margin="0 10">
+        <DockPanel>
             <!-- Menu-->
-            <Menu DockPanel.Dock="Right">
+            <Menu DockPanel.Dock="Right" Padding="0 10 0 0">
                 <StackPanel Orientation="Vertical" Margin="0">
                     <Image Source="/Assets/EsportDK/Logo.png" Width="172" Height="33"/>
                     <MenuItem Header="_Spillere" Click="spillereMenuItem_Click"/>

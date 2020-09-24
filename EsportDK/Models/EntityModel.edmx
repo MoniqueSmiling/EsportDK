@@ -5,63 +5,210 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="EsportDKDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ansatte">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fornavn" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Efternavn" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Løn" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Jobtype" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DommerLevel" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
         <EntityType Name="Spillere">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="forNavn" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="efterNavn" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="rang" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="telefon" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="turneringsType" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Fornavn" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Efternavn" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SummonerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rang" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TurneringsType" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'EsportDKDB.dbo.Turneringer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Sponsorer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firmanavn" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Branche" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SpillerID" Type="int" Nullable="false" />
+          <Property Name="Udgift" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="Turneringer">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="turneringsNavn" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="turneringsNavn" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Turneringsnavn" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SpillerID" Type="int" Nullable="false" />
+          <Property Name="DommerID" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Ansatte">
+          <End Role="Ansatte" Type="Self.Ansatte" Multiplicity="1" />
+          <End Role="Turneringer" Type="Self.Turneringer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ansatte">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Turneringer">
+              <PropertyRef Name="DommerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Spillere_Sponsor">
+          <End Role="Spillere" Type="Self.Spillere" Multiplicity="1" />
+          <End Role="Sponsorer" Type="Self.Sponsorer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spillere">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sponsorer">
+              <PropertyRef Name="SpillerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Spillere_Turnering">
+          <End Role="Spillere" Type="Self.Spillere" Multiplicity="1" />
+          <End Role="Turneringer" Type="Self.Turneringer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spillere">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Turneringer">
+              <PropertyRef Name="SpillerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="EsportDKDBModelStoreContainer">
+          <EntitySet Name="Ansatte" EntityType="Self.Ansatte" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Spillere" EntityType="Self.Spillere" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Turneringer" EntityType="Self.Turneringer" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Turneringer].[ID] AS [ID], 
-    [Turneringer].[turneringsNavn] AS [turneringsNavn]
-    FROM [dbo].[Turneringer] AS [Turneringer]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Sponsorer" EntityType="Self.Sponsorer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Turneringer" EntityType="Self.Turneringer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Ansatte" Association="Self.FK_Ansatte">
+            <End Role="Ansatte" EntitySet="Ansatte" />
+            <End Role="Turneringer" EntitySet="Turneringer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Spillere_Sponsor" Association="Self.FK_Spillere_Sponsor">
+            <End Role="Spillere" EntitySet="Spillere" />
+            <End Role="Sponsorer" EntitySet="Sponsorer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Spillere_Turnering" Association="Self.FK_Spillere_Turnering">
+            <End Role="Spillere" EntitySet="Spillere" />
+            <End Role="Turneringer" EntitySet="Turneringer" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EsportDKDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ansatte">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fornavn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Efternavn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Løn" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Jobtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DommerLevel" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Turneringers" Relationship="Self.FK_Ansatte" FromRole="Ansatte" ToRole="Turneringer" />
+        </EntityType>
         <EntityType Name="Spillere">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="forNavn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="efterNavn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="rang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="turneringsType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fornavn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Efternavn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SummonerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TurneringsType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sponsorers" Relationship="Self.FK_Spillere_Sponsor" FromRole="Spillere" ToRole="Sponsorer" />
+          <NavigationProperty Name="Turneringers" Relationship="Self.FK_Spillere_Turnering" FromRole="Spillere" ToRole="Turneringer" />
+        </EntityType>
+        <EntityType Name="Sponsorer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firmanavn" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Branche" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SpillerID" Type="Int32" Nullable="false" />
+          <Property Name="Udgift" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Spillere" Relationship="Self.FK_Spillere_Sponsor" FromRole="Sponsorer" ToRole="Spillere" />
         </EntityType>
         <EntityType Name="Turneringer">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="turneringsNavn" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="turneringsNavn" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Turneringsnavn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SpillerID" Type="Int32" Nullable="false" />
+          <Property Name="DommerID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ansatte" Relationship="Self.FK_Ansatte" FromRole="Turneringer" ToRole="Ansatte" />
+          <NavigationProperty Name="Spillere" Relationship="Self.FK_Spillere_Turnering" FromRole="Turneringer" ToRole="Spillere" />
         </EntityType>
+        <Association Name="FK_Ansatte">
+          <End Role="Ansatte" Type="Self.Ansatte" Multiplicity="1" />
+          <End Role="Turneringer" Type="Self.Turneringer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ansatte">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Turneringer">
+              <PropertyRef Name="DommerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Spillere_Sponsor">
+          <End Role="Spillere" Type="Self.Spillere" Multiplicity="1" />
+          <End Role="Sponsorer" Type="Self.Sponsorer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spillere">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sponsorer">
+              <PropertyRef Name="SpillerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Spillere_Turnering">
+          <End Role="Spillere" Type="Self.Spillere" Multiplicity="1" />
+          <End Role="Turneringer" Type="Self.Turneringer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spillere">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Turneringer">
+              <PropertyRef Name="SpillerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="EsportDKDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ansattes" EntityType="Self.Ansatte" />
           <EntitySet Name="Spilleres" EntityType="Self.Spillere" />
+          <EntitySet Name="Sponsorers" EntityType="Self.Sponsorer" />
           <EntitySet Name="Turneringers" EntityType="Self.Turneringer" />
+          <AssociationSet Name="FK_Ansatte" Association="Self.FK_Ansatte">
+            <End Role="Ansatte" EntitySet="Ansattes" />
+            <End Role="Turneringer" EntitySet="Turneringers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Spillere_Sponsor" Association="Self.FK_Spillere_Sponsor">
+            <End Role="Spillere" EntitySet="Spilleres" />
+            <End Role="Sponsorer" EntitySet="Sponsorers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Spillere_Turnering" Association="Self.FK_Spillere_Turnering">
+            <End Role="Spillere" EntitySet="Spilleres" />
+            <End Role="Turneringer" EntitySet="Turneringers" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -69,15 +216,40 @@ warning 6002: The table/view 'EsportDKDB.dbo.Turneringer' does not have a primar
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EsportDKDBModelStoreContainer" CdmEntityContainer="EsportDKDBEntities">
+          <EntitySetMapping Name="Ansattes">
+            <EntityTypeMapping TypeName="EsportDKDBModel.Ansatte">
+              <MappingFragment StoreEntitySet="Ansatte">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Fornavn" ColumnName="Fornavn" />
+                <ScalarProperty Name="Efternavn" ColumnName="Efternavn" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Løn" ColumnName="Løn" />
+                <ScalarProperty Name="Jobtype" ColumnName="Jobtype" />
+                <ScalarProperty Name="DommerLevel" ColumnName="DommerLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Spilleres">
             <EntityTypeMapping TypeName="EsportDKDBModel.Spillere">
               <MappingFragment StoreEntitySet="Spillere">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="forNavn" ColumnName="forNavn" />
-                <ScalarProperty Name="efterNavn" ColumnName="efterNavn" />
-                <ScalarProperty Name="rang" ColumnName="rang" />
-                <ScalarProperty Name="telefon" ColumnName="telefon" />
-                <ScalarProperty Name="turneringsType" ColumnName="turneringsType" />
+                <ScalarProperty Name="Fornavn" ColumnName="Fornavn" />
+                <ScalarProperty Name="Efternavn" ColumnName="Efternavn" />
+                <ScalarProperty Name="SummonerName" ColumnName="SummonerName" />
+                <ScalarProperty Name="Rang" ColumnName="Rang" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="TurneringsType" ColumnName="TurneringsType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sponsorers">
+            <EntityTypeMapping TypeName="EsportDKDBModel.Sponsorer">
+              <MappingFragment StoreEntitySet="Sponsorer">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Firmanavn" ColumnName="Firmanavn" />
+                <ScalarProperty Name="Branche" ColumnName="Branche" />
+                <ScalarProperty Name="SpillerID" ColumnName="SpillerID" />
+                <ScalarProperty Name="Udgift" ColumnName="Udgift" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -85,7 +257,9 @@ warning 6002: The table/view 'EsportDKDB.dbo.Turneringer' does not have a primar
             <EntityTypeMapping TypeName="EsportDKDBModel.Turneringer">
               <MappingFragment StoreEntitySet="Turneringer">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="turneringsNavn" ColumnName="turneringsNavn" />
+                <ScalarProperty Name="Turneringsnavn" ColumnName="Turneringsnavn" />
+                <ScalarProperty Name="SpillerID" ColumnName="SpillerID" />
+                <ScalarProperty Name="DommerID" ColumnName="DommerID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

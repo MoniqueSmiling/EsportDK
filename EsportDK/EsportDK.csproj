@@ -64,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Ansatte.cs">
+      <DependentUpon>EntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EntityModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -82,6 +85,9 @@
     <Compile Include="Models\Spillere.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Sponsorer.cs">
+      <DependentUpon>EntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Turneringer.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
@@ -92,8 +98,17 @@
     <Compile Include="Views\AnsatteView.xaml.cs">
       <DependentUpon>AnsatteView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\AnsattePageView.xaml.cs">
+      <DependentUpon>AnsattePageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\spillerPageView.xaml.cs">
       <DependentUpon>spillerPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\SponsorerPageView.xaml.cs">
+      <DependentUpon>SponsorerPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\TurneringerPageView.xaml.cs">
+      <DependentUpon>TurneringerPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SpillereView.xaml.cs">
       <DependentUpon>SpillereView.xaml</DependentUpon>
@@ -120,7 +135,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Pages\AnsattePageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\spillerPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\SponsorerPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\TurneringerPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,19 +203,30 @@
     <Resource Include="Assets\EsportDK\Logo2.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\emblems\Emblem_Bronze.png" />
+    <Resource Include="Assets\emblems\Emblem_Challenger.png" />
+    <Resource Include="Assets\emblems\Emblem_Diamond.png" />
+    <Resource Include="Assets\emblems\Emblem_Gold.png" />
+    <Resource Include="Assets\emblems\Emblem_Grandmaster.png" />
+    <Resource Include="Assets\emblems\Emblem_Iron.png" />
+    <Resource Include="Assets\emblems\Emblem_Master.png" />
+    <Resource Include="Assets\emblems\Emblem_Platinum.png" />
+    <Resource Include="Assets\emblems\Emblem_Silver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Models\EntityModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EntityModel.Context.cs</LastGenOutput>
       <DependentUpon>EntityModel.edmx</DependentUpon>
+      <LastGenOutput>EntityModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\EntityModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>EntityModel.edmx</DependentUpon>
       <LastGenOutput>EntityModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

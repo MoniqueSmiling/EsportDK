@@ -12,25 +12,22 @@ namespace EsportDK.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Spillere
+    public partial class Ansatte
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Spillere()
+        public Ansatte()
         {
-            this.Sponsorers = new HashSet<Sponsorer>();
             this.Turneringers = new HashSet<Turneringer>();
         }
     
         public int ID { get; set; }
         public string Fornavn { get; set; }
         public string Efternavn { get; set; }
-        public string SummonerName { get; set; }
-        public string Rang { get; set; }
         public string Telefon { get; set; }
-        public string TurneringsType { get; set; }
+        public decimal Løn { get; set; }
+        public string Jobtype { get; set; }
+        public string DommerLevel { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sponsorer> Sponsorers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Turneringer> Turneringers { get; set; }
     }

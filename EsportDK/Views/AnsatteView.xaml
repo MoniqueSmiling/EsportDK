@@ -5,8 +5,42 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EsportDK.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="Magenta">
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="300"/>
+            <ColumnDefinition Width="2*" MinWidth="500"/>
+        </Grid.ColumnDefinitions>
+
+
+        <!-- #region Datagrid Spillere-->
+        <DataGrid x:Name="spillerDataGrid" x:FieldModifier="public" AutoGenerateColumns="False" ColumnWidth="*" Grid.Column="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Fornavn" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Efternavn" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Telefon" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Summoner navn" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Rang" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Turneringstype" Binding="{Binding ID}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Action" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="redigerAnsatteButton"  Content="Rediger" Click="redigerAnsatteButton_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <!-- #endregion -->
 
     </Grid>
 </UserControl>

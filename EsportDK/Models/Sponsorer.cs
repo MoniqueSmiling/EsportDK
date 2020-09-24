@@ -12,14 +12,14 @@ namespace EsportDK.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Turneringer
+    public partial class Sponsorer
     {
         public int ID { get; set; }
-        public string Turneringsnavn { get; set; }
+        public string Firmanavn { get; set; }
+        public string Branche { get; set; }
         public int SpillerID { get; set; }
-        public int DommerID { get; set; }
+        public decimal Udgift { get; set; }
     
-        public virtual Ansatte Ansatte { get; set; }
         public virtual Spillere Spillere { get; set; }
     }
 }

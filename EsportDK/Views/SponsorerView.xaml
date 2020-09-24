@@ -5,8 +5,185 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EsportDK.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="Green">
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="300"/>
+            <ColumnDefinition Width="2*" MinWidth="500"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- #region Registrer Spiller Form -->
+        <StackPanel Grid.Column="0">
+
+            <!-- TextBlock Registrer titel -->
+            <TextBlock Text="Spiller Registrering " HorizontalAlignment="Center" FontSize="20" Margin="0 20"/>
+
+            <!-- #region Navn-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Style="{StaticResource stackPanelForm}" Grid.Column="0">
+                    <!-- TextBlock Spiller Fornavn-->
+                    <TextBlock Text="Fornavn"/>
+                    <!-- TextBox Spiller Fornavn-->
+                    <TextBox Text="" />
+                </StackPanel>
+
+                <StackPanel Style="{StaticResource stackPanelForm}" Grid.Column="1">
+                    <!-- TextBlock Spiller Efternavn-->
+                    <TextBlock Text="Efternavn"/>
+                    <!-- TextBox Spiller efternavn-->
+                    <TextBox Text="" />
+                </StackPanel>
+            </Grid>
+            <!--#endregion-->
+
+            <!-- #region Summoner Information -->
+            <StackPanel Style="{StaticResource stackPanelForm}" Grid.Column="0">
+                <!-- TextBlock Summoner Name-->
+                <TextBlock Text="Summoner Name"/>
+                <!-- TextBox Summoner Name-->
+                <TextBox Text="" />
+            </StackPanel>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Stackpanel Telefon-->
+                <StackPanel Style="{StaticResource stackPanelForm}" Grid.Column="0">
+                    <!-- TextBlock Spiller Telefon nummer-->
+                    <TextBlock Text="Telefon"/>
+                    <!-- TextBox Spiller Fornavn-->
+                    <TextBox Text="" />
+                </StackPanel>
+
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- #region Rank -->
+                    <StackPanel Style="{StaticResource stackPanelForm}" Grid.Column="0">
+                        <TextBlock Text="Rank"/>
+                        <!-- Combobox Spiller Rank -->
+                        <ComboBox x:Name="spillerTurneringstypeComboBox">
+                            <!-- Rank Iron -->
+                            <ComboBoxItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/emblems/Emblem_Iron.png" Height="20" Width="20" />
+                                    <TextBlock Text="Iron" />
+                                </StackPanel>
+                            </ComboBoxItem>
+                            <!-- Rank Bronze -->
+                            <ComboBoxItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/emblems/Emblem_Bronze.png" Height="20" Width="20" />
+                                    <TextBlock Text="Bronze" />
+                                </StackPanel>
+                            </ComboBoxItem>
+                            <!-- Rank Silver -->
+                            <ComboBoxItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/emblems/Emblem_Silver.png" Height="20" Width="20" />
+                                    <TextBlock Text="Silver" />
+                                </StackPanel>
+                            </ComboBoxItem>
+                            <!-- Rank Golder -->
+                            <ComboBoxItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/emblems/Emblem_Gold.png" Width="20" Height="20" />
+                                    <TextBlock Text="Gold" />
+                                </StackPanel>
+                            </ComboBoxItem>
+                            <!-- Rank Platinium-->
+                            <ComboBoxItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/emblems/Emblem_Platinum.png" Width="20" Height="20" />
+                                    <TextBlock Text="Platinum" />
+                                </StackPanel>
+                            </ComboBoxItem>
+                            <!-- Rank Diamond-->
+                            <ComboBoxItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/emblems/Emblem_Diamond.png" Height="20" Width="20" />
+                                    <TextBlock Text="Diamond" />
+                                </StackPanel>
+                            </ComboBoxItem>
+                            <!-- Rank Grandmaster-->
+                            <ComboBoxItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/emblems/Emblem_Grandmaster.png" Height="20" Width="20" />
+                                    <TextBlock Text="Grandmaster" />
+                                </StackPanel>
+                            </ComboBoxItem>
+                            <!-- Rank Challenger -->
+                            <ComboBoxItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/emblems/Emblem_Challenger.png" Height="20" Width="20" />
+                                    <TextBlock Text="Challenger" />
+                                </StackPanel>
+                            </ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <!--#endregion-->
+
+                    <StackPanel Style="{StaticResource stackPanelForm}" Grid.Column="1">
+                        <!-- TextBlock Turneringstype -->
+                        <TextBlock Text="Turneringstype" />
+                        <ComboBox IsDropDownOpen="True">
+                            <ComboBoxItem Content="1v1" />
+                            <ComboBoxItem Content="3v3" />
+                            <ComboBoxItem Content="5v5" />
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <!--#endregion-->
+
+            <!-- Buttons -->
+            <StackPanel Style="{StaticResource stackPanelForm}" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0 20">
+                <Button Content="Cancel" />
+                <Button Content="Registrer" />
+            </StackPanel>
+
+        </StackPanel>
+        <!--#endregion-->
+
+        <!-- #region Datagrid Spillere-->
+        <DataGrid x:Name="spillerDataGrid" x:FieldModifier="public" AutoGenerateColumns="False" ColumnWidth="*" Grid.Column="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Fornavn" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Efternavn" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Telefon" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Summoner navn" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Rang" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Turneringstype" Binding="{Binding ID}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Action" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="redigerSponsorButton"  Content="Rediger" Click="redigerSposorButton_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <!-- #endregion -->
 
     </Grid>
 </UserControl>
