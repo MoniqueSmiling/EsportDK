@@ -32,14 +32,14 @@
                     <!-- TextBlock Spiller Fornavn-->
                     <TextBlock Text="Fornavn"/>
                     <!-- TextBox Spiller Fornavn-->
-                    <TextBox x:Name="fornavnSpillerText" Style="{StaticResource TextBoxForm}" Text="" />
+                    <TextBox x:Name="fornavnSpillerText" Style="{StaticResource TextBoxForm}" Text="" MaxLength="50" />
                 </StackPanel>
 
                 <StackPanel Style="{StaticResource stackPanelForm}" Grid.Column="1">
                     <!-- TextBlock Spiller Efternavn-->
                     <TextBlock Text="Efternavn"/>
                     <!-- TextBox Spiller efternavn-->
-                    <TextBox x:Name="efternavnSpillerText" Style="{StaticResource TextBoxForm}" Text="" />
+                    <TextBox x:Name="efternavnSpillerText" Style="{StaticResource TextBoxForm}" Text="" MaxLength="50" />
                 </StackPanel>
             </Grid>
             <!--#endregion-->
@@ -49,7 +49,7 @@
                 <!-- TextBlock Summoner Name-->
                 <TextBlock Text="Summoner Name"/>
                 <!-- TextBox Summoner Name-->
-                <TextBox x:Name="SummonerSpillerText" Style="{StaticResource TextBoxForm}" Text="" />
+                <TextBox x:Name="SummonerSpillerText" Style="{StaticResource TextBoxForm}" Text="" MaxLength="70"/>
             </StackPanel>
 
             <Grid>
@@ -63,7 +63,7 @@
                     <!-- TextBlock Spiller Telefon nummer-->
                     <TextBlock Text="Telefon"/>
                     <!-- TextBox Spiller telefon nummmer -->
-                    <TextBox x:Name="telefonSpillerText" Style="{StaticResource TextBoxForm}" Text="" />
+                    <TextBox x:Name="telefonSpillerText" Style="{StaticResource TextBoxForm}" Text=""  MaxLength="8"/>
                 </StackPanel>
 
                 <Grid Grid.Column="1">
@@ -114,8 +114,8 @@
 
             <!-- Buttons -->
             <StackPanel Style="{StaticResource stackPanelForm}" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0 20">
-                <Button Style="{StaticResource ButtonForm}" Content="Cancel"  Click="cancelSpillerinput_Click"/>
-                <Button Style="{StaticResource ButtonForm}" Content="Registrer" Click="registretSpillerButton_Click"/>
+                <Button x:Name="cancelButton" Style="{StaticResource ButtonForm}" Content="Cancel"  Click="cancelSpillerinput_Click"/>
+                <Button x:Name="registrerButton" Style="{StaticResource ButtonForm}" Content="Registrer" Click="registrerSpillerButton_Click" />
             </StackPanel>
 
         </StackPanel>

@@ -9,7 +9,7 @@ CREATE TABLE [dbo].[Spillere] (
     [ID]             INT        IDENTITY (1, 1) NOT NULL,
     [Fornavn]        NVARCHAR (50) NOT NULL,
     [Efternavn]      NVARCHAR (50) NOT NULL,
-    [SummonerName]   NVARCHAR (50) NOT NULL,
+    [SummonerName]   NVARCHAR (70) NOT NULL,
     [Rang]           NVARCHAR (10) NOT NULL,
     [Telefon]        NVARCHAR (8) NOT NULL,
     [TurneringsType] NVARCHAR (10) NOT NULL,
