@@ -98,18 +98,6 @@
     <Compile Include="Views\AnsatteView.xaml.cs">
       <DependentUpon>AnsatteView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pages\AnsattePageView.xaml.cs">
-      <DependentUpon>AnsattePageView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\spillerPageView.xaml.cs">
-      <DependentUpon>spillerPageView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\SponsorerPageView.xaml.cs">
-      <DependentUpon>SponsorerPageView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\TurneringerPageView.xaml.cs">
-      <DependentUpon>TurneringerPageView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\SpillereView.xaml.cs">
       <DependentUpon>SpillereView.xaml</DependentUpon>
     </Compile>
@@ -135,22 +123,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\Pages\AnsattePageView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\spillerPageView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\SponsorerPageView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\TurneringerPageView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\SpillereView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -40,7 +40,7 @@ CREATE TABLE [dbo].[Ansatte] (
 -- Populate Ansatte with
 INSERT INTO Ansatte 
             (Fornavn, Efternavn, Telefon, Løn, Jobtype, DommerLevel)
-VALUES      ('Dieter', 'Knockaert', '42724846', 'Dommer','3');
+VALUES      ('Dieter', 'Knockaert', '42724846', 2400 , 'Dommer','3');
 
 --  Create Turneringer table
 CREATE TABLE [dbo].[Turneringer] (

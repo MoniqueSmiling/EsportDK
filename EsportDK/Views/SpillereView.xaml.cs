@@ -1,5 +1,4 @@
 ﻿using EsportDK.Models;
-using EsportDK.Views.Pages;
 using System.Linq;
 using System.Windows.Controls;
 
@@ -18,7 +17,6 @@ namespace EsportDK.Views
         public SpillereView()
         {
             InitializeComponent();
-
             Load();
         }
 
@@ -52,27 +50,49 @@ namespace EsportDK.Views
         private void redigerSpillerButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             int Id = (spillerDataGrid.SelectedItem as Spillere).ID;
-            spillerPageView spillerPage = new spillerPageView(Id);
-            spillerPage.ShowDialog();
+
+            Spillere updateSpiller = (from spiller in _db.Spilleres
+                                      where spiller.ID == Id
+                                      select spiller).Single();
+
+            fornavnSpillerText.Text = updateSpiller.Fornavn;
+            efternavnSpillerText.Text = updateSpiller.Efternavn;
+            SummonerSpillerText.Text = updateSpiller.SummonerName;
+            telefonSpillerText.Text = updateSpiller.Telefon;
+            spillerTurneringstypeComboBox.Text = updateSpiller.Rang;
+            TurneringsTypeCombobox.Text = updateSpiller.TurneringsType;
+
         }
 
+        /// <summary>
+        /// Clears form of data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cancelSpillerinput_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            // Clear data
+            fornavnSpillerText.Text = efternavnSpillerText.Text = SummonerSpillerText.Text = telefonSpillerText.Text = spillerTurneringstypeComboBox.Text = TurneringsTypeCombobox.Text = "";
         }
 
+        /// <summary>
+        /// Registering new Spiller
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void registretSpillerButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+
             try
             {
                 Spillere nySpiller = new Spillere()
                 {
-                    Fornavn = fornavnSpillerText.Text,
-                    Efternavn = efternavnSpillerText.Text,
-                    SummonerName = SummonerSpillerText.Text,
-                    Telefon = telefonSpillerText.Text,
+                    Fornavn = fornavnSpillerText.Text.Trim(),
+                    Efternavn = efternavnSpillerText.Text.Trim(),
+                    SummonerName = SummonerSpillerText.Text.Trim(),
+                    Telefon = telefonSpillerText.Text.Trim(),
                     Rang = spillerTurneringstypeComboBox.Text,
-                    TurneringsType = "3v3"
+                    TurneringsType = TurneringsTypeCombobox.Text
                 };
 
                 _db.Spilleres.Add(nySpiller);

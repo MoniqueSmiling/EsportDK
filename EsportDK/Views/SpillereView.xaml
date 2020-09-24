@@ -78,61 +78,23 @@
                         <!-- Combobox Spiller Rank -->
                         <ComboBox x:Name="spillerTurneringstypeComboBox">
                             <!-- Rank Iron -->
-                            <ComboBoxItem >
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/Assets/emblems/Emblem_Iron.png" Height="20" Width="20" />
-                                    <TextBlock Text="Iron" />
-                                </StackPanel>
-                            </ComboBoxItem>
+                            <ComboBoxItem Content="Iron" />
                             <!-- Rank Bronze -->
-                            <ComboBoxItem>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/Assets/emblems/Emblem_Bronze.png" Height="20" Width="20" />
-                                    <TextBlock Text="Bronze" />
-                                </StackPanel>
-                            </ComboBoxItem>
+                            <ComboBoxItem Content="Bronze" />
                             <!-- Rank Silver -->
-                            <ComboBoxItem>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/Assets/emblems/Emblem_Silver.png" Height="20" Width="20" />
-                                    <TextBlock Text="Silver" />
-                                </StackPanel>
-                            </ComboBoxItem>
-                            <!-- Rank Golder -->
-                            <ComboBoxItem>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/Assets/emblems/Emblem_Gold.png" Width="20" Height="20" />
-                                    <TextBlock Text="Gold" />
-                                </StackPanel>
-                            </ComboBoxItem>
-                            <!-- Rank Platinium-->
-                            <ComboBoxItem>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/Assets/emblems/Emblem_Platinum.png" Width="20" Height="20" />
-                                    <TextBlock Text="Platinum" />
-                                </StackPanel>
-                            </ComboBoxItem>
-                            <!-- Rank Diamond-->
-                            <ComboBoxItem>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/Assets/emblems/Emblem_Diamond.png" Height="20" Width="20" />
-                                    <TextBlock Text="Diamond" />
-                                </StackPanel>
-                            </ComboBoxItem>
-                            <!-- Rank Grandmaster-->
-                            <ComboBoxItem>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/Assets/emblems/Emblem_Grandmaster.png" Height="20" Width="20" />
-                                    <TextBlock Text="Grandmaster" />
-                                </StackPanel>
-                            </ComboBoxItem>
+                            <ComboBoxItem Content="Silver" />
+                            <!-- Rank  Gold-->
+                            <ComboBoxItem Content="Gold" />
+                            <!-- Rank Platinum -->
+                            <ComboBoxItem Content="Platinum" />
+                            <!-- Rank Diamond -->
+                            <ComboBoxItem Content="Diamond" />
+                            <!-- Rank Master -->
+                            <ComboBoxItem Content="Master" />
+                            <!-- Rank Grand Master -->
+                            <ComboBoxItem Content="Grandmaster" />
                             <!-- Rank Challenger -->
-                            <ComboBoxItem>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/Assets/emblems/Emblem_Challenger.png" Height="20" Width="20" />
-                                    <TextBlock Text="Challenger" />
-                                </StackPanel>
-                            </ComboBoxItem>
+                            <ComboBoxItem Content="Challenger" />
                         </ComboBox>
                     </StackPanel>
                     <!--#endregion-->
@@ -140,7 +102,7 @@
                     <StackPanel Style="{StaticResource stackPanelForm}" Grid.Column="1">
                         <!-- TextBlock Turneringstype -->
                         <TextBlock Text="Turneringstype" />
-                        <ComboBox IsDropDownOpen="True">
+                        <ComboBox x:Name="TurneringsTypeCombobox">
                             <ComboBoxItem Content="1v1" />
                             <ComboBoxItem Content="3v3" />
                             <ComboBoxItem Content="5v5" />
