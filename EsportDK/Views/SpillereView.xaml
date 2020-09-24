@@ -32,14 +32,14 @@
                     <!-- TextBlock Spiller Fornavn-->
                     <TextBlock Text="Fornavn"/>
                     <!-- TextBox Spiller Fornavn-->
-                    <TextBox Style="{StaticResource TextBoxForm}" Text="" />
+                    <TextBox x:Name="fornavnSpillerText" Style="{StaticResource TextBoxForm}" Text="" />
                 </StackPanel>
 
                 <StackPanel Style="{StaticResource stackPanelForm}" Grid.Column="1">
                     <!-- TextBlock Spiller Efternavn-->
                     <TextBlock Text="Efternavn"/>
                     <!-- TextBox Spiller efternavn-->
-                    <TextBox Style="{StaticResource TextBoxForm}" Text="" />
+                    <TextBox x:Name="efternavnSpillerText" Style="{StaticResource TextBoxForm}" Text="" />
                 </StackPanel>
             </Grid>
             <!--#endregion-->
@@ -49,7 +49,7 @@
                 <!-- TextBlock Summoner Name-->
                 <TextBlock Text="Summoner Name"/>
                 <!-- TextBox Summoner Name-->
-                <TextBox Style="{StaticResource TextBoxForm}" Text="" />
+                <TextBox x:Name="SummonerSpillerText" Style="{StaticResource TextBoxForm}" Text="" />
             </StackPanel>
 
             <Grid>
@@ -62,8 +62,8 @@
                 <StackPanel Style="{StaticResource stackPanelForm}" Grid.Column="0">
                     <!-- TextBlock Spiller Telefon nummer-->
                     <TextBlock Text="Telefon"/>
-                    <!-- TextBox Spiller Fornavn-->
-                    <TextBox Style="{StaticResource TextBoxForm}" Text="" />
+                    <!-- TextBox Spiller telefon nummmer -->
+                    <TextBox x:Name="telefonSpillerText" Style="{StaticResource TextBoxForm}" Text="" />
                 </StackPanel>
 
                 <Grid Grid.Column="1">
@@ -78,7 +78,7 @@
                         <!-- Combobox Spiller Rank -->
                         <ComboBox x:Name="spillerTurneringstypeComboBox">
                             <!-- Rank Iron -->
-                            <ComboBoxItem>
+                            <ComboBoxItem >
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/Assets/emblems/Emblem_Iron.png" Height="20" Width="20" />
                                     <TextBlock Text="Iron" />
@@ -152,8 +152,8 @@
 
             <!-- Buttons -->
             <StackPanel Style="{StaticResource stackPanelForm}" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0 20">
-                <Button Style="{StaticResource ButtonForm}" Content="Cancel" />
-                <Button Style="{StaticResource ButtonForm}" Content="Registrer" />
+                <Button Style="{StaticResource ButtonForm}" Content="Cancel"  Click="cancelSpillerinput_Click"/>
+                <Button Style="{StaticResource ButtonForm}" Content="Registrer" Click="registretSpillerButton_Click"/>
             </StackPanel>
 
         </StackPanel>

@@ -11,10 +11,10 @@ namespace EsportDK.Views.Pages
         EsportDKDBEntities _db = new EsportDKDBEntities();
         int ID;
 
-        public spillerPageView(int spillerID)
+        public spillerPageView(int id)
         {
             InitializeComponent();
-            ID = spillerID;
+            ID = id;
         }
     }
 }

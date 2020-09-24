@@ -14,7 +14,7 @@ CREATE TABLE [dbo].[Spillere] (
     [Telefon]        NVARCHAR (8) NOT NULL,
     [TurneringsType] NVARCHAR (10) NOT NULL,
     CONSTRAINT [PK_Spillere] PRIMARY KEY CLUSTERED ([ID] ASC),
-    CONSTRAINT [UC_Spillere] UNIQUE ([ID],[SummonerName],[Telefon]),
+    CONSTRAINT [UC_Spillere] UNIQUE ([ID],[SummonerName],[Telefon])
 );
 
 -- Populate Spillere table 
