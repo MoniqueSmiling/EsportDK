@@ -15,7 +15,7 @@
           <Property Name="Telefon" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Løn" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Jobtype" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="DommerLevel" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="DommerLevel" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="Spillere">
           <Key>
@@ -25,8 +25,8 @@
           <Property Name="Fornavn" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Efternavn" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SummonerName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Rang" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Telefon" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Rang" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="TurneringsType" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Sponsorer">
@@ -117,7 +117,7 @@
           <Property Name="Telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Løn" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Jobtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DommerLevel" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DommerLevel" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Turneringers" Relationship="Self.FK_Ansatte" FromRole="Ansatte" ToRole="Turneringer" />
         </EntityType>
         <EntityType Name="Spillere">
@@ -128,8 +128,8 @@
           <Property Name="Fornavn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Efternavn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SummonerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Rang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rang" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefon" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TurneringsType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Sponsorers" Relationship="Self.FK_Spillere_Sponsor" FromRole="Spillere" ToRole="Sponsorer" />
           <NavigationProperty Name="Turneringers" Relationship="Self.FK_Spillere_Turnering" FromRole="Spillere" ToRole="Turneringer" />

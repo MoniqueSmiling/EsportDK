@@ -18,6 +18,7 @@ namespace EsportDK.Views
         // Variable for holding Id
         int Id;
 
+
         public SpillereView()
         {
             InitializeComponent();
@@ -80,6 +81,7 @@ namespace EsportDK.Views
         private void registrerSpillerButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
+
             var buttonContent = (string)registrerButton.Content;
 
             // If buttons content is...
@@ -134,6 +136,13 @@ namespace EsportDK.Views
         {
             // Clear data
             fornavnSpillerText.Text = efternavnSpillerText.Text = SummonerSpillerText.Text = telefonSpillerText.Text = spillerTurneringstypeComboBox.Text = TurneringsTypeCombobox.Text = "";
+
+
+            var buttonContent = (string)registrerButton.Content;
+
+            // Changes buttons content back
+            if (buttonContent == "Update")
+                buttonContent = "Registrer";
         }
     }
 }
